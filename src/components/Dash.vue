@@ -2,19 +2,22 @@
   import axios from 'axios';
 
   export default {
-    name: 'hello',
+    name: 'dashboard',
     data () {
       return {
         updated: this.getCurrentTime(),
         assets: [
-          { id: "bitcoin", amount: 7.0342, share: 50.94 },
-          { id: "ethereum", amount: 41.036, share: 21.21 },
-          { id: "ripple", amount: 20295, share: 7.13 },
-          { id: "monero", amount: 36.23, share: 6.9 },
-          { id: "iota", amount: 6665, share: 6.58 }
+          { id: "bitcoin", name: "Bitcoin", amount: 7.1037 + 1, share: 28.54 + 4.02 },
+          { id: "ethereum", name: "Ethereum", amount: 41.036, share: 11.88 },
+          { id: "ethereum-classic", name: "Ethereum Classic", amount: 274.6, share: 4.08 },
+          { id: "ripple", name: "Ripple", amount: 20295, share: 4.08 },
+          { id: "monero", name: "Monero", amount: 150, share: 16.27 },
+          { id: "iota", name: "Iota", amount: 39632, share: 19.47 },
+          { id: "neo", name: "Neo", amount: 366, share: 7.62 },
+          { id: "augur", name: "Augur", amount: 201.7, share: 4.05 },
         ],
         fields: {
-          id: {
+          name: {
             label: "Currency",
             class: "text-center"
           },
@@ -40,7 +43,7 @@
     methods: {
       getTableRows(tableContext, callback) {
         let self = this;
-        axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=20')
+        axios.get('https://api.coinmarketcap.com/v1/ticker/?limit=40')
           .then(function (response) {
             let data = self.mapData(response.data, self.assets);
             callback(data);
@@ -61,7 +64,7 @@
         result.push({
           id: "Total",
           amount: null,
-          share: (this.getTotal(result, "share")),
+          share: (this.getTotal(result, "share").toFixed(0)),
           price_usd: +((this.getTotal(result, "price_usd")).toFixed(2)),
           price_btc: +((this.getTotal(result, "price_btc")).toFixed(4)),
           _rowVariant: 'warning'
