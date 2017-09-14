@@ -62,7 +62,7 @@
           }
         })
         result.push({
-          id: "Total",
+          name: "Total",
           amount: null,
           share: (this.getTotal(result, "share").toFixed(0)),
           price_usd: +((this.getTotal(result, "price_usd")).toFixed(2)),
