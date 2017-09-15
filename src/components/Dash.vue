@@ -1,8 +1,16 @@
 <script>
   import axios from 'axios';
+  import ECharts from 'vue-echarts/components/ECharts.vue'
+  import 'echarts/lib/chart/pie'
+  import 'echarts/lib/component/tooltip'
+  import 'echarts/lib/component/legend'
+  import 'echarts/lib/component/visualMap'
 
   export default {
     name: 'dashboard',
+    components: {
+      chart: ECharts
+    },
     data () {
       return {
         updated: this.getCurrentTime(),
@@ -37,6 +45,33 @@
             label: "Price USD",
             class: "text-center"
           }
+        },
+        pie: {
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c}%'
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: []
+          },
+          series: [
+            {
+              name: 'Portfolio',
+              type: 'pie',
+              radius: '55%',
+              center: ['50%', '60%'],
+              data: [],
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -61,6 +96,9 @@
             self.setAssetInfo(obj, result);
           }
         })
+        result.sort(function (v1, v2) {
+          return v1.share < v2.share;
+        });
         result.push({
           name: "Total",
           amount: null,
@@ -92,6 +130,17 @@
         m = (d.getMinutes()<10?'0':'') + d.getMinutes();
         return h + ':' + m;
       }
+    },
+    computed: {
+      pieData() {
+        let assets = this.assets;
+        assets.sort(function (v1, v2) {
+          return v1.share < v2.share;
+        });
+        this.pie.legend.data = assets.map(function(a) {return a.name;});
+        this.pie.series[0].data = assets.map(function(a) {return { name: a.name, value: a.share };});
+        return this.pie;
+      }
     }
   }
 </script>
@@ -109,12 +158,18 @@
   .cap {
     float:left;
   }
+  .piechart {
+    margin: 40px auto 20px auto;
+  }
 </style>
 
 <template>
   <b-container>
-    <h1>Digital silk portfolio</h1><br><br>
+    <h1>Digital silk portfolio</h1>
     <div class="row">
+      <div class="piechart">
+        <figure><chart :options="pieData" auto-resize></chart></figure>
+      </div>
       <b-table striped hover bordered show-empty :items="getTableRows" :fields="fields"></b-table>
       <div class="footer">
         <div class="updated">
