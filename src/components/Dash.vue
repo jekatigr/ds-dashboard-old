@@ -60,7 +60,7 @@
             {
               name: 'Portfolio',
               type: 'pie',
-              radius: '55%',
+              radius: '70%',
               center: ['50%', '60%'],
               data: [],
               itemStyle: {
@@ -168,7 +168,7 @@
     <h1>Digital silk portfolio</h1>
     <div class="row">
       <div class="piechart">
-        <figure><chart :options="pieData" auto-resize></chart></figure>
+        <figure><chart :width="800" :height="600" :options="pieData" auto-resize></chart></figure>
       </div>
       <b-table striped hover bordered show-empty :items="getTableRows" :fields="fields"></b-table>
       <div class="footer">
