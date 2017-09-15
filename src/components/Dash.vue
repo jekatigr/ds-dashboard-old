@@ -61,7 +61,7 @@
               name: 'Portfolio',
               type: 'pie',
               radius: '70%',
-              center: ['50%', '60%'],
+              center: ['70%', '50%'],
               data: [],
               itemStyle: {
                 emphasis: {
