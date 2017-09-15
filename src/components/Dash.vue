@@ -53,7 +53,8 @@
           },
           legend: {
             orient: 'vertical',
-            left: 'left',
+            right: 0,
+            top: 100,
             data: []
           },
           series: [
@@ -61,7 +62,7 @@
               name: 'Portfolio',
               type: 'pie',
               radius: '70%',
-              center: ['70%', '50%'],
+              center: ['30%', '50%'],
               data: [],
               itemStyle: {
                 emphasis: {
@@ -159,7 +160,7 @@
     float:left;
   }
   .piechart {
-    margin: 40px auto 20px auto;
+    margin: 20px auto 20px auto;
   }
 </style>
 
@@ -168,7 +169,7 @@
     <h1>Digital silk portfolio</h1>
     <div class="row">
       <div class="piechart">
-        <figure><chart :width="800" :height="600" :options="pieData" auto-resize></chart></figure>
+        <figure><chart :options="pieData" auto-resize></chart></figure>
       </div>
       <b-table striped hover bordered show-empty :items="getTableRows" :fields="fields"></b-table>
       <div class="footer">
