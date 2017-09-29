@@ -15,14 +15,14 @@
       return {
         updated: this.getCurrentTime(),
         assets: [
-          { id: "bitcoin", name: "Bitcoin", amount: 7.1037 + 1, share: 28.54 + 4.02 },
-          { id: "ethereum", name: "Ethereum", amount: 41.036, share: 11.88 },
-          { id: "ethereum-classic", name: "Ethereum Classic", amount: 274.6, share: 4.08 },
-          { id: "ripple", name: "Ripple", amount: 20295, share: 4.08 },
-          { id: "monero", name: "Monero", amount: 150, share: 16.27 },
-          { id: "iota", name: "Iota", amount: 39632, share: 19.47 },
-          { id: "neo", name: "Neo", amount: 366, share: 7.62 },
-          { id: "augur", name: "Augur", amount: 201.7, share: 4.05 },
+          { id: "bitcoin", name: "Bitcoin", amount: 7.4, share: 27.52 },
+          { id: "ripple", name: "Ripple", amount: 20295, share: 3.51 },
+          { id: "ethereum-classic", name: "Ethereum Classic", amount: 274.6, share: 3.07 },
+          { id: "augur", name: "Augur", amount: 201.7, share: 3.75 },
+          { id: "ethereum", name: "Ethereum", amount: 47.63, share: 12.34 },
+          { id: "iota", name: "Iota", amount: 30000, share: 15.23 },
+          { id: "monero", name: "Monero", amount: 186.3 + 36.23, share: 18.82 },
+          { id: "neo", name: "Neo", amount: 622, share: 15.75 },
         ],
         fields: {
           name: {
